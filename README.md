@@ -10,23 +10,23 @@
 $I=I_{ambient}+I_{diffuse}+I_{specular}$
 
 ### <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">（一）各分量计算原理</font>
-<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">环境光（</font>$I_{ambient}$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">）：模拟场景中经多次反射后均匀分布的背景光，消除物体表面因未直接接收光源而呈现全黑的现象，计算公式为：</font>
+<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">环境光（</font> $I_{ambient}$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">）：模拟场景中经多次反射后均匀分布的背景光，消除物体表面因未直接接收光源而呈现全黑的现象，计算公式为：</font>
 
 $I_{ambient}=K_a\times C_{light}\times C_{object}$
 
-其中，$K_a$为环境光系数，$C_{light}$为光源颜色，$C_{object}$为物体表面基础颜色。
+其中， $K_a$ 为环境光系数， $C_{light}$ 为光源颜色， $C_{object}$ 为物体表面基础颜色。
 
-<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">漫反射（</font>$I_{diffuse}$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">）</font>：模拟粗糙表面向各个方向均匀散射的光，其强度与光线入射角的余弦值成正比（遵循 Lambert 定律），计算公式为：
+<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">漫反射（</font> $I_{diffuse}$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">）</font>：模拟粗糙表面向各个方向均匀散射的光，其强度与光线入射角的余弦值成正比（遵循 Lambert 定律），计算公式为：
 
 $I_{diffuse}=K_d\times max(0,N·L)\times C_{light}\times C_{object}$
 
-其中，$K_d$为漫反射系数,$N$为物体表面法向量，$L$为指向光源的方向向量，$max(0,N·L)$保证光线从背面照射时漫反射强度为 0。
+其中， $K_d$ 为漫反射系数, $N$ 为物体表面法向量， $L$ 为指向光源的方向向量， $max(0,N·L)$ 保证光线从背面照射时漫反射强度为 0。
 
-<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">镜面高光（</font>$I_{specular}$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">）：模拟光滑表面反射的强光，强度与观察方向和理想反射方向的夹角相关，夹角越小高光越强，计算公式为：</font>
+<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">镜面高光（</font> $I_{specular}$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">）：模拟光滑表面反射的强光，强度与观察方向和理想反射方向的夹角相关，夹角越小高光越强，计算公式为：</font>
 
 $I_{specular}=K_s\times max(0,R·V)^n\times C_{light}$
 
-<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">其中，</font>$K_s$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">为镜面高光系数，</font>$R$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">为光线的理想反射向量，</font>$V$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">为指向摄像机的方向向量，</font>$n$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">为高光指数（Shininess），控制高光区域的大小。</font>
+<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">其中，</font> $K_s$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">为镜面高光系数，</font> $R$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">为光线的理想反射向量，</font> $V$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">为指向摄像机的方向向量，</font> $n$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">为高光指数（Shininess），控制高光区域的大小。</font>
 
 ### <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">（二）核心技术支撑</font>
 1. <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">光线投射（Ray Casting）：为屏幕每个像素发射一条射线，通过计算射线与三维几何体的交点，确定像素对应的三维空间位置。</font>
@@ -41,7 +41,7 @@ $I_{specular}=K_s\times max(0,R·V)^n\times C_{light}$
 ## <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">四、实验步骤与代码实现</font>
 ### <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">（一）环境初始化与参数定义</font>
 1. <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">初始化 Taichi 并指定 GPU 架构，定义窗口分辨率，创建用于存储像素颜色的向量场。</font>
-2. <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">定义全局交互参数（环境光系数$K_a$、漫反射系数$K_d$、高光系数$K_s$、高光指数$n$），通过 Taichi 字段实现跨内核参数共享。</font>
+2. <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">定义全局交互参数（环境光系数 $K_a$ 、漫反射系数 $K_d$ 、高光系数 $K_s$ 、高光指数  $n$ ），通过 Taichi 字段实现跨内核参数共享。</font>
 
 ```plain
 import taichi as ti
@@ -235,12 +235,12 @@ if __name__ == '__main__':
 ### <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">（一）渲染结果展示</font>
 <img src="https://cdn.nlark.com/yuque/0/2026/gif/62188406/1776339257645-e3c9083a-9544-4d98-b959-da311d80eee9.gif" width="804" title="" crop="0,0,1,1" id="ue9e56e2a" class="ne-image">
 
-<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">运行程序后，窗口左侧显示深红色球体，右侧显示紫色圆锥，背景为深青色。通过右侧 UI 面板的滑块控件，可实时调节</font>$K_a,K_d,K_s$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">高光指数</font>$n$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">，渲染结果随参数变化呈现不同视觉效果：</font>
+<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">运行程序后，窗口左侧显示深红色球体，右侧显示紫色圆锥，背景为深青色。通过右侧 UI 面板的滑块控件，可实时调节</font> $K_a,K_d,K_s$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">高光指数</font> $n$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">，渲染结果随参数变化呈现不同视觉效果：</font>
 
-1. $K_a$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">（环境光系数）：增大</font>$K_a$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">时，物体整体亮度提升，暗部细节更清晰；减小</font>$K_a$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">时，物体暗部逐渐变暗，甚至失去层次感。</font>
-2. $K_d$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">（漫反射系数）：</font>$K_d$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">越大，物体漫反射效果越显著，表面粗糙感越强；</font>$K_d$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">趋近于 0 时，漫反射几乎消失，物体仅保留环境光与高光效果。</font>
-3. $K_s$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">（高光系数）：</font>$K_s$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">增大时，镜面高光区域更亮、更明显；</font>$K_s$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">为 0 时，高光效果完全消失，物体呈现哑光质感。</font>
-4. <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">高光指数</font>$n$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">：</font>$n$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">越大，高光区域越集中、越锐利，物体表面光滑感越强；</font>$n$<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">越小时，高光区域越弥散，表面粗糙感越明显。</font>
+1.  $K_a$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">（环境光系数）：增大</font> $K_a$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">时，物体整体亮度提升，暗部细节更清晰；减小</font> $K_a$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">时，物体暗部逐渐变暗，甚至失去层次感。</font>
+2.  $K_d$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">（漫反射系数）：</font> $K_d$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">越大，物体漫反射效果越显著，表面粗糙感越强；</font> $K_d$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">趋近于 0 时，漫反射几乎消失，物体仅保留环境光与高光效果。</font>
+3.  $K_s$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">（高光系数）：</font> $K_s$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">增大时，镜面高光区域更亮、更明显；</font> $K_s$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">为 0 时，高光效果完全消失，物体呈现哑光质感。</font>
+4. <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">高光指数</font> $n$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">：</font> $n$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">越大，高光区域越集中、越锐利，物体表面光滑感越强；</font> $n$ <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">越小时，高光区域越弥散，表面粗糙感越明显。</font>
 
 ### <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">（二）结果分析</font>
 1. **<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">光照模型验证</font>**<font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">：Phong 模型的三个分量叠加效果符合理论预期，环境光保证了物体整体亮度，漫反射模拟了粗糙表面的散射特性，镜面高光还原了光滑表面的反光效果。</font>
