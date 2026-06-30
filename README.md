@@ -1,4 +1,7 @@
 # <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">基于 Taichi 的 Phong 光照模型交互式渲染实验报告</font>
+
+学号：202411081021      姓名：陈诗邈   专业：计算机师范
+
 ## <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">一、实验目标</font>
 1. <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">理论理解：深入掌握局部光照的核心原理，精准区分环境光（Ambient）、漫反射（Diffuse）与镜面高光（Specular）三个光照分量的物理意义与计算逻辑。</font>
 2. <font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">数学基础</font><font style="color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0);">：熟练运用三维空间向量运算，包括法向量求解、光线方向 / 视线方向 / 反射方向的计算，为光照模型实现提供数学支撑。</font>
